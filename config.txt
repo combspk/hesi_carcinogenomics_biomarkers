@@ -1,0 +1,3 @@
+ITER_COUNT=50
+DATA_DIR="./"
+INPUT_FILE="affy_ps_hesi_alt_ast_11_2023"
