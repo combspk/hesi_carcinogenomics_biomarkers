@@ -1,0 +1,1 @@
+This directory must be emptied before running the code.
