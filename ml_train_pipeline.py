@@ -3,7 +3,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import classification_report
 from sklearn.svm import LinearSVC
-from sklearn.preprocessing import StandardScaler
 from imblearn.over_sampling import SMOTE
 from imblearn.pipeline import Pipeline
 
@@ -50,7 +49,7 @@ def train_model(ITER=1, INPUT_FILE="", DATA_DIR="./", MIE="", MIE2="", df=None, 
 
     classifier = LinearSVC()
 
-    steps = [('scaler', StandardScaler()), ('cls', classifier)]
+    steps = [('cls', classifier)]
     pipeline = Pipeline(steps)
 
     for i in range(0, 1, 1):
