@@ -5,6 +5,7 @@ from sklearn.metrics import classification_report
 from sklearn.svm import LinearSVC
 from imblearn.over_sampling import SMOTE
 from imblearn.pipeline import Pipeline
+import pickle
 
 def train_model(ITER=1, INPUT_FILE="", DATA_DIR="./", MIE="", MIE2="", df=None, interpretation=[], X_holdout=None, y_holdout=[]):
     df = df
@@ -82,4 +83,12 @@ def train_model(ITER=1, INPUT_FILE="", DATA_DIR="./", MIE="", MIE2="", df=None, 
         print(clf_ranking)
         
         clf_ranking.to_csv(f"{DATA_DIR}/{MIE}__{i}__ranking__Over__TOP50__XGB.csv", sep="\t")
+        # Save model to pickle
+        try:
+            with open(f"{DATA_DIR}/{MIE}__MODEL.pickle", 'wb') as handle:
+                pickle.dump(clf, handle, protocol=pickle.HIGHEST_PROTOCOL)
+        except Exception as e:
+            print(f"Error: Could not save model for {MIE}!")
+            print(e)
+            return -1
 
